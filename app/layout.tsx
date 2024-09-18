@@ -1,18 +1,8 @@
 import type { Metadata } from 'next';
-
 import './globals.css';
 import { Inter, IBM_Plex_Serif } from 'next/font/google';
-
-// const geistSans = localFont({
-//   src: './fonts/GeistVF.woff',
-//   variable: '--font-geist-sans',
-//   weight: '100 900',
-// });
-// const geistMono = localFont({
-//   src: './fonts/GeistMonoVF.woff',
-//   variable: '--font-geist-mono',
-//   weight: '100 900',
-// });
+import { getLoggedInUser } from '@/lib/actions/user.action';
+import { redirect } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
