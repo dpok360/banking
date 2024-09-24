@@ -4,6 +4,11 @@ import qs from 'query-string';
 import { twMerge } from 'tailwind-merge';
 import { z } from 'zod';
 
+enum AuthFormType {
+  SignIn = 'sign-in',
+  SignUp = 'sign-up',
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -76,7 +81,9 @@ export function formatAmount(amount: number): string {
   return formatter.format(amount);
 }
 
-export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+// export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+export const parseStringify = <T>(value: T): T =>
+  JSON.parse(JSON.stringify(value));
 
 export const removeSpecialCharacters = (value: string) => {
   return value.replace(/[^\w\s]/gi, '');
@@ -195,7 +202,7 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? 'Processing' : 'Success';
 };
 
-export const authFormSchema = (type) =>
+export const authFormSchema = (type: AuthFormType) =>
   z.object({
     //sign up
     firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
