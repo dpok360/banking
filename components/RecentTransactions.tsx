@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { validateHeaderName } from 'http';
+
 import { BankTabItem } from './BankTabItem';
-import { BankIncomeRefreshCompleteResult } from 'plaid';
+
 import BankInfo from './BankInfo';
 import TransactionsTable from './TransactionsTable';
 import { Pagination } from './Pagination';
-import { Divide } from 'lucide-react';
 
 const RecentTransactions = ({
   accounts,

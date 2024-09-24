@@ -1,8 +1,8 @@
+export const dynamic = 'force-dynamic';
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Inter, IBM_Plex_Serif } from 'next/font/google';
-import { getLoggedInUser } from '@/lib/actions/user.action';
-import { redirect } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 

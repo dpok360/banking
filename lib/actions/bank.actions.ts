@@ -1,13 +1,6 @@
 'use server';
 
-import {
-  ACHClass,
-  CountryCode,
-  TransferAuthorizationCreateRequest,
-  TransferCreateRequest,
-  TransferNetwork,
-  TransferType,
-} from 'plaid';
+import { CountryCode } from 'plaid';
 
 import { plaidClient } from '../plaid';
 import { parseStringify } from '../utils';
@@ -15,6 +8,19 @@ import { parseStringify } from '../utils';
 import { getTransactionsByBankId } from './transaction.actions';
 
 import { getBanks, getBank } from './user.actions';
+
+interface MappedTransaction {
+  id: string;
+  name: string;
+  paymentChannel: string;
+  type: string;
+  accountId: string;
+  amount: number;
+  pending: boolean;
+  category: string;
+  date: string;
+  image?: string | null; // Optional field
+}
 
 // Get multiple bank accounts
 export const getAccounts = async ({ userId }: getAccountsProps) => {
@@ -152,7 +158,7 @@ export const getTransactions = async ({
   accessToken,
 }: getTransactionsProps) => {
   let hasMore = true;
-  let transactions: any = [];
+  let transactions: MappedTransaction[] = [];
 
   try {
     // Iterate through each page of new transaction updates for item
