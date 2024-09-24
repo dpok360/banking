@@ -12,7 +12,7 @@ import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { signIn, signUp } from '@/lib/actions/user.action';
+import { signIn, signUp } from '@/lib/actions/user.actions';
 import PlaidLink from './PlaidLink';
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -56,7 +56,6 @@ const AuthForm = ({ type }: { type: string }) => {
       if (type === 'sign-up') {
         const newUser = await signUp(userData);
         setUser(newUser);
-        console.log(data);
       }
 
       if (type === 'sign-in') {
@@ -68,8 +67,6 @@ const AuthForm = ({ type }: { type: string }) => {
           router.push('/');
         }
       }
-      setIsLoading(false);
-      console.log(data);
     } catch (error) {
       console.log('Error during submit', error);
     } finally {
